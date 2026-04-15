@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Family Groupware</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(to right, #74ebd5, #9face6);
+            text-align: center;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            margin: 50px auto;
+            width: 300px;
+            border-radius: 10px;
+        }
+
+        input, select, button {
+            margin: 10px;
+            padding: 8px;
+            width: 90%;
+        }
+
+        #dashboard {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container" id="login">
+    <h2>Family Login</h2>
+
+    <input type="text" id="username" placeholder="Username"><br>
+    <input type="password" id="password" placeholder="Password"><br>
+
+    <select id="role">
+        <option value="admin">Admin</option>
+        <option value="parent">Parent</option>
+        <option value="child">Child</option>
+    </select><br>
+
+    <button onclick="login()">Login</button>
+    <p id="msg"></p>
+</div>
+
+<div class="container" id="dashboard">
+    <h2>Welcome to Family Groupware</h2>
+    <p id="welcome"></p>
+
+    <div id="postSection">
+        <textarea id="post" placeholder="Share information"></textarea><br>
+        <button onclick="addPost()">Post</button>
+    </div>
+
+    <h3>Shared Messages</h3>
+    <ul id="messages"></ul>
+</div>
+
+<script>
+function login() {
+    let user = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+    let role = document.getElementById("role").value;
+
+    if (user === "admin" && pass === "123") {
+        showDashboard(role);
+    } else if (user === "parent" && pass === "123") {
+        showDashboard(role);
+    } else if (user === "child" && pass === "123") {
+        showDashboard(role);
+    } else {
+        document.getElementById("msg").innerText = "Invalid Login!";
+    }
+}
+
+function showDashboard(role) {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("dashboard").style.display = "block";
+
+    document.getElementById("welcome").innerText = "Logged in as " + role;
+
+    if (role === "child") {
+        document.getElementById("postSection").style.display = "none";
+    }
+}
+
+function addPost() {
+    let msg = document.getElementById("post").value;
+    let li = document.createElement("li");
+    li.innerText = msg;
+    document.getElementById("messages").appendChild(li);
+}
+</script>
+
+</body>
+</html>
